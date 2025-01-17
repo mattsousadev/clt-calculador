@@ -58,7 +58,7 @@ Ele tem como objetivo permitir que trabalhadores e empregadores realizem cálcul
 ## Contribuição
 
 1. Faça um fork deste repositório.
-2. Crie uma branch para sua funcionalidade ou correção:
+2. A partir da branch `dev`, crie uma branch para sua funcionalidade ou correção:
    ```bash
    git checkout -b minha-nova-funcionalidade
    ```
@@ -71,6 +71,8 @@ Ele tem como objetivo permitir que trabalhadores e empregadores realizem cálcul
    git push origin minha-nova-funcionalidade
    ```
 5. Abra um Pull Request.
+
+> :warning: **Use commits semânticos**: Mais informações [aqui](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
 
 ## Licença
 

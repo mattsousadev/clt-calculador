@@ -1,11 +1,11 @@
 ## **Planejamento e Definições**  
-1. **Definir os requisitos dos cálculos trabalhistas.**  
+1. **OK ~~Definir os requisitos dos cálculos trabalhistas.~~**
    - Levantar e documentar os campos necessários para os cálculos de salário líquido, FGTS, férias e demissão.  
 
-2. **Definir o modelo do arquivo Excel para exportação.**  
+2. **OK ~~Definir o modelo do arquivo Excel para exportação.~~**  
    - Especificar o layout e o conteúdo de cada planilha gerada, garantindo clareza e organização dos dados para cada tipo de cálculo.
 
-3. **Escolher framework CSS de componentes.**  
+3. **OK ~~Escolher framework CSS de componentes.~~**  
    - Avaliar frameworks CSS (ex.: Tailwind, Bootstrap, Material UI, etc.) e selecionar um que atenda às especificações de estilo (SPA, minimalista, tons pastéis, temas claros).  
 
 4. **Analisar e identificar APIs de suporte.**  

@@ -1,4 +1,4 @@
-import { AppBar, Box, Container, FormControl, MenuItem, Select, TextField, Toolbar, Typography } from "@mui/material";
+import { AppBar, Box, Container, FormControl, InputAdornment, MenuItem, Select, TextField, Toolbar, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { CalculadorTrabalhista } from "./CalculadorTrabalhista";
 
@@ -12,7 +12,7 @@ function formatBrl(value: number): string {
 
 function App() {
 
-  const calculador = new CalculadorTrabalhista(); 
+  const calculador = new CalculadorTrabalhista();
 
   const [calculationType, setCalculationType] = useState(1);
   const [salarioLiquidoValue, setSalarioLiquidoValue] = useState(0.0);
@@ -40,10 +40,10 @@ function App() {
   useEffect(() => {
     const salarioBrutoNumber = Number(salarioBruto)
     const dependentesNumber = Number(dependentes)
-    if (!Number.isNaN(salarioBrutoNumber) && !Number.isNaN(dependentesNumber)){
+    if (!Number.isNaN(salarioBrutoNumber) && !Number.isNaN(dependentesNumber)) {
       const salarioLiquido = calculador.calcularSalarioLiquido(salarioBrutoNumber, dependentesNumber);
       const inss = calculador.calcularInss(salarioBrutoNumber);
-      const irrf = calculador.calcularIrrf(salarioBrutoNumber-inss, dependentesNumber);
+      const irrf = calculador.calcularIrrf(salarioBrutoNumber - inss, dependentesNumber);
       setSalarioLiquidoValue(salarioLiquido);
       setInss(formatBrl(inss));
       setIrrf(formatBrl(irrf));
@@ -65,9 +65,7 @@ function App() {
 
         <FormControl fullWidth>
           <Select
-            id="demo-simple-select"
             value={calculationType}
-            label="Age"
             onChange={handleCalculationSelection}
           >
             <MenuItem value={1}>Salário Líquido</MenuItem>
@@ -86,9 +84,18 @@ function App() {
         >
           <div>
             <TextField
+              slotProps={{
+                input: {
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      R$
+                    </InputAdornment>
+                  ),
+                },
+              }}
               type="number"
               label="Salário Bruto"
-              placeholder="R$3000,00"
+              placeholder="3000,00"
               value={salarioBruto}
               onChange={handleSalarioBrutoChange}
             />

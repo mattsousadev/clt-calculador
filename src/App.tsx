@@ -1,18 +1,13 @@
 import { AppBar, Box, Container, FormControl, InputAdornment, MenuItem, Select, TextField, Toolbar, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { CalculadorTrabalhista } from "./CalculadorTrabalhista";
+import { CalculadorTrabalhista } from "./application/CalculadorTrabalhista";
+import { BrlNumberFormatter } from "./application/BrlNumberFormatter";
 
-function formatBrl(value: number): string {
-  let brReais = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  });
-  return brReais.format(value)
-}
 
 function App() {
 
   const calculador = new CalculadorTrabalhista();
+  const formatter = new BrlNumberFormatter();
 
   const [calculationType, setCalculationType] = useState(1);
   const [salarioLiquidoValue, setSalarioLiquidoValue] = useState(0.0);
@@ -40,13 +35,14 @@ function App() {
   useEffect(() => {
     const salarioBrutoNumber = Number(salarioBruto)
     const dependentesNumber = Number(dependentes)
+
     if (!Number.isNaN(salarioBrutoNumber) && !Number.isNaN(dependentesNumber)) {
-      const salarioLiquido = calculador.calcularSalarioLiquido(salarioBrutoNumber, dependentesNumber);
       const inss = calculador.calcularInss(salarioBrutoNumber);
       const irrf = calculador.calcularIrrf(salarioBrutoNumber - inss, dependentesNumber);
+      const salarioLiquido = calculador.calcularSalarioLiquido(salarioBrutoNumber, dependentesNumber);
       setSalarioLiquidoValue(salarioLiquido);
-      setInss(formatBrl(inss));
-      setIrrf(formatBrl(irrf));
+      setInss(formatter.formatCurrency(inss));
+      setIrrf(formatter.formatCurrency(irrf));
     }
   }, [salarioBruto, dependentes])
 
@@ -73,7 +69,7 @@ function App() {
         </FormControl>
 
         <Typography sx={{ textAlign: "center", mt: 2 }} variant="h3" gutterBottom>
-          {formatBrl(salarioLiquidoValue)}
+          {formatter.formatCurrency(salarioLiquidoValue)}
         </Typography>
 
         <Box
